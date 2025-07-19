@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { claimPoints } from '../services/api';
+import axios from 'axios';
 
 const ClaimButton = ({ selectedUserId, onPointsClaimed }) => {
   const [loading, setLoading] = useState(false);
@@ -13,8 +13,13 @@ const ClaimButton = ({ selectedUserId, onPointsClaimed }) => {
 
     setLoading(true);
     try {
-      const data = await claimPoints(selectedUserId);
-      setClaimedPoints(data.pointsAwarded);
+      const response = await axios.post('/api/claim', { userId: selectedUserId }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      setClaimedPoints(response.data.pointsAwarded);
       onPointsClaimed(); // Refresh leaderboard or user state
     } catch (error) {
       console.error('Error claiming points:', error.message);
