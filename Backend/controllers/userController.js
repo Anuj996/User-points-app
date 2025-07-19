@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const User = require('../models/user');
 const ClaimHistory = require('../models/claimHistory');
 
 // @desc    Get all users
