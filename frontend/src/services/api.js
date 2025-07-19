@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000/api/users';
+const API_BASE_URL = 'https://user-points-app-9hp6.onrender.com/api/users';
 
 // Get all users
 export const fetchUsers = async () => {
